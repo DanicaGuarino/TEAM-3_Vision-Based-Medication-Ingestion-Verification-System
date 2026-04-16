@@ -1,15 +1,17 @@
+from __future__ import annotations  # <--- MUST BE LINE 1
+
+import torch
+from ultralytics.nn.tasks import DetectionModel
+
+# This line tells PyTorch to trust the YOLO model structure
+torch.serialization.add_safe_globals([DetectionModel])
+
 """
 Vision-Based Medication Verification System - Streamlit UI
 Integrates with existing OpenCV/YOLOv8/MediaPipe pipeline
 
 Run with: streamlit run streamlit_app.py
 """
-import torch
-from ultralytics.nn.tasks import DetectionModel
-
-# This line tells PyTorch to trust the YOLO model structure
-torch.serialization.add_safe_globals([DetectionModel])
-from __future__ import annotations
 import time
 from datetime import datetime
 from typing import Optional, Dict, Any
