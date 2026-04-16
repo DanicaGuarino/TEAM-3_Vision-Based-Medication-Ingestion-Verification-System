@@ -4,7 +4,10 @@ Integrates with existing OpenCV/YOLOv8/MediaPipe pipeline
 
 Run with: streamlit run streamlit_app.py
 """
-
+import torch
+# This tells PyTorch to trust the YOLO model structure
+from ultralytics.nn.tasks import DetectionModel
+torch.serialization.add_safe_globals([DetectionModel])
 from __future__ import annotations
 import time
 from datetime import datetime
