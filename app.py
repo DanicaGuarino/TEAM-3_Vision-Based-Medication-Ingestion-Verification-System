@@ -1,17 +1,11 @@
-from __future__ import annotations  # <--- MUST BE LINE 1
+from __future__ import annotations
 
 import torch
 from ultralytics.nn.tasks import DetectionModel
 
-# This line tells PyTorch to trust the YOLO model structure
+# 1. Trust the YOLO model structure immediately
 torch.serialization.add_safe_globals([DetectionModel])
 
-"""
-Vision-Based Medication Verification System - Streamlit UI
-Integrates with existing OpenCV/YOLOv8/MediaPipe pipeline
-
-Run with: streamlit run streamlit_app.py
-"""
 import time
 from datetime import datetime
 from typing import Optional, Dict, Any
@@ -19,18 +13,7 @@ import cv2
 import streamlit as st
 import numpy as np
 
-# Import CV modules
-from config import AppConfig
-from detectors import DetectionPipeline
-from display import DisplayRenderer
-from logger import TrialLogger
-from utils import distance_between, enhance_low_light
-from verifier import FrameInputs, IngestionVerifier
-
-# ============================================================================
-# PAGE CONFIGURATION
-# ============================================================================
-
+# 2. SET PAGE CONFIG (Must be the first Streamlit command)
 st.set_page_config(
     page_title="Mediseena: Vision-Based Ingestion System",
     page_icon="💊",
@@ -38,6 +21,13 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# 3. NOW import your custom modules
+from config import AppConfig
+from detectors import DetectionPipeline
+from display import DisplayRenderer
+from logger import TrialLogger
+from utils import distance_between, enhance_low_light
+from verifier import FrameInputs, IngestionVerifier
 # ============================================================================
 # CUSTOM CSS STYLING
 # ============================================================================
