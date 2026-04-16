@@ -7,7 +7,7 @@ import ultralytics.nn.tasks as tasks
 import ultralytics.nn.modules.conv as conv_mod
 import ultralytics.nn.modules.block as block_mod
 
-# THE ULTIMATE ALLOWLIST (Includes SPPF and friends)
+# THE CLEAN ALLOWLIST
 torch.serialization.add_safe_globals([
     # Standard PyTorch layers
     nn.modules.container.Sequential,
@@ -24,9 +24,8 @@ torch.serialization.add_safe_globals([
     block_mod.C2f,
     block_mod.DFL,
     block_mod.Bottleneck,
-    block_mod.SPPF,       
-    block_mod.Attention,  
-    block_mod.C3          
+    block_mod.SPPF,
+    block_mod.C3
 ])
 
 import time
