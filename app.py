@@ -1,19 +1,29 @@
+from __future__ import annotations
+
 import torch
 import torch.nn as nn
-# Add these specific YOLO components to the trust list
-from ultralytics.nn.tasks import DetectionModel
-from ultralytics.nn.modules.conv import Conv, Concat
-from ultralytics.nn.modules.block import C2f, DFL
+# Import the specific YOLO components that trigger security blocks
+import ultralytics.nn.tasks as tasks
+import ultralytics.nn.modules.conv as conv_mod
+import ultralytics.nn.modules.block as block_mod
 
-# This covers almost all YOLOv8 model architectures
+# THE COMPREHENSIVE ALLOWLIST
 torch.serialization.add_safe_globals([
-    DetectionModel, 
-    nn.Sequential, 
-    nn.ModuleList,
-    Conv, 
-    Concat, 
-    C2f, 
-    DFL
+    # Standard PyTorch layers
+    nn.modules.container.Sequential,
+    nn.modules.container.ModuleList,
+    nn.modules.conv.Conv2d,
+    nn.modules.batchnorm.BatchNorm2d,
+    nn.modules.activation.SiLU,
+    nn.modules.pooling.MaxPool2d,
+    nn.modules.upsampling.Upsample,
+    # YOLO specific structures
+    tasks.DetectionModel,
+    conv_mod.Conv,
+    conv_mod.Concat,
+    block_mod.C2f,
+    block_mod.DFL,
+    block_mod.Bottleneck
 ])
 
 import time
