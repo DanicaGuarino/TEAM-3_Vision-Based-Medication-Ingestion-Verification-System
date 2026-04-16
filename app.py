@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import torch
+# Import the specific module mentioned in the error
+import torch.nn as nn 
 from ultralytics.nn.tasks import DetectionModel
 
-# 1. Trust the YOLO model structure immediately
-torch.serialization.add_safe_globals([DetectionModel])
+# Add BOTH the YOLO model and the Sequential container to the safe list
+torch.serialization.add_safe_globals([DetectionModel, nn.Sequential])
 
 import time
 from datetime import datetime
