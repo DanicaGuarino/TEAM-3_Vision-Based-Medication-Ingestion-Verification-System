@@ -1,6 +1,5 @@
 streamlit>=1.30.0
-opencv-python
-mediapipe>=0.10.11
+opencv-python-headlessmediapipe>=0.10.11
 numpy
 pillow
 matplotlib
