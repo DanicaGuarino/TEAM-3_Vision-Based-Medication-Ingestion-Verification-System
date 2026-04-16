@@ -1,7 +1,7 @@
-streamlit>=1.55.0
+streamlit>=1.32.2
 opencv-python-headless
 ultralytics>=8.3.0
-mediapipe>=0.10.20
+mediapipe>=0.10.33
 numpy>=1.26.0
 pillow>=10.3.0
 matplotlib>=3.8.4
