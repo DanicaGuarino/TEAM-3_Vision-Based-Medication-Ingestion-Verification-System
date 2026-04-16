@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
-# Import the specific YOLO components that trigger security blocks
+# Specific YOLO component imports
 import ultralytics.nn.tasks as tasks
 import ultralytics.nn.modules.conv as conv_mod
 import ultralytics.nn.modules.block as block_mod
 
-# THE COMPREHENSIVE ALLOWLIST
+# THE ULTIMATE ALLOWLIST (Includes SPPF and friends)
 torch.serialization.add_safe_globals([
     # Standard PyTorch layers
     nn.modules.container.Sequential,
@@ -23,7 +23,10 @@ torch.serialization.add_safe_globals([
     conv_mod.Concat,
     block_mod.C2f,
     block_mod.DFL,
-    block_mod.Bottleneck
+    block_mod.Bottleneck,
+    block_mod.SPPF,       
+    block_mod.Attention,  
+    block_mod.C3          
 ])
 
 import time
